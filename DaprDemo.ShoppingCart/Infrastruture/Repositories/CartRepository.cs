@@ -64,7 +64,8 @@ namespace DaprDemo.ShoppingCart.Infrastruture.Repositories
         public async Task<List<AddToCartCommand>> Checkout(CheckoutCommand command)
         {
             var state = await GetCart(command.UserId);
-            await _daprClient.PublishEventAsync(Pubsub, "checkout", state);
+            await _daprClient.PublishEventAsync(Pubsub, "checkout", "state");
+            _logger.LogWarning("Publish state");
             return state;
         }
     }

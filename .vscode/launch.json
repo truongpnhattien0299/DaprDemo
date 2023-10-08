@@ -6,9 +6,9 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/DaprDemo.ShoppingCart/bin/Debug/net6.0/DaprDemo.ShoppingCart.dll",
+      "program": "${workspaceFolder}/DaprDemo.Ordering/bin/Debug/net6.0/DaprDemo.Ordering.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/DaprDemo.ShoppingCart",
+      "cwd": "${workspaceFolder}/DaprDemo.Ordering",
       "stopAtEntry": false,
       "serverReadyAction": {
         "action": "openExternally",
@@ -27,13 +27,13 @@
       "request": "attach"
     },
     {
-      "name": ".NET Core Launch (web) with Dapr",
+      "name": ".NET Core Launch (Shopping Cart) with Dapr",
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "dapr-debug",
-      "program": "${workspaceFolder}/DaprDemo.ShoppingCart/bin/Debug/net6.0/DaprDemo.ShoppingCart.dll",
+      "program": "${workspaceFolder}/DaprDemo.Ordering/bin/Debug/net6.0/DaprDemo.Ordering.dll",
       "args": [],
-      "cwd": "${workspaceFolder}/DaprDemo.ShoppingCart",
+      "cwd": "${workspaceFolder}/DaprDemo.Ordering",
       "stopAtEntry": false,
       "env": {
         "ASPNETCORE_ENVIRONMENT": "Development"

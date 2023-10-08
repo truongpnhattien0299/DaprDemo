@@ -33,15 +33,15 @@
       "problemMatcher": "$msCompile"
     },
     {
-      "appId": "shoppingcart",
-      "appPort": 5226,
-      "httpPort": 3500,
+      "appId": "ordering",
+      "appPort": 5195,
+      "httpPort": 3501,
       "label": "dapr-debug",
       "type": "daprd",
       "dependsOn": "build"
     },
     {
-      "appId": "shoppingcart",
+      "appId": "ordering",
       "label": "daprd-down",
       "type": "daprd-down"
     }

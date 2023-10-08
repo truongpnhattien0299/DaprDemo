@@ -1,17 +1,18 @@
-using DaprDemo.ShoppingCart.Application.Interfaces;
-using DaprDemo.ShoppingCart.Infrastruture.Repositories;
+using DaprDemo.Ordering.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDaprClient();
+
+// builder.Services.AddDaprClient();
 builder.Services.AddControllers().AddDapr();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<ICartRepository, CartRepository>();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(typeof(Program).Assembly));
+builder.Services.AddDbContext<OrderingDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("OrderingDb")));
 
 var app = builder.Build();
 
@@ -27,4 +28,5 @@ app.UseAuthorization();
 app.UseCloudEvents();
 app.MapControllers();
 app.MapSubscribeHandler();
+
 app.Run();
