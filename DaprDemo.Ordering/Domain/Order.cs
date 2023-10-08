@@ -1,4 +1,18 @@
 namespace DaprDemo.Ordering.Domain
 {
-    public record Order(int Id, string UserId, DateTime CreatedAt);
+    public class Order
+    {
+
+        public Order(int id, string UserId)
+        {
+            this.Id = id;
+            this.CreatedAt = DateTime.Now;
+            this.UserId = UserId;
+        }
+        public int Id { get; set; }
+        public string? UserId { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public ICollection<OrderItem>? OrderItems { get; set; }
+
+    }
 }
