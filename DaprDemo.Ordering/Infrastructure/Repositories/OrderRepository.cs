@@ -17,11 +17,13 @@ namespace DaprDemo.Ordering.Infrastructure.Repositories
             _orders = _context.Orders;
         }
 
-        public async Task<bool> SaveDbAsync(OrderCommand command)
+        public async Task<Order> SaveDbAsync(OrderCommand command)
         {
             Order order = new(0, command.UserId ?? string.Empty);
+            order.OrderItems = command.OrderItems;
             await _orders.AddAsync(order);
-            return (await _context.SaveChangesAsync()) > 0;
+            await _context.SaveChangesAsync();
+            return order;
 
         }
     }

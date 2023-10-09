@@ -1,5 +1,4 @@
 using DaprDemo.Ordering.Domain;
-using DaprDemo.Ordering.Infrastructure.Context.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace DaprDemo.Ordering.Infrastructure.Context
@@ -15,8 +14,7 @@ namespace DaprDemo.Ordering.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.ApplyConfiguration(new OrderConfiguration());
-            builder.ApplyConfiguration(new OrderItemConfiguration());
+            base.OnModelCreating(builder);
         }
     }
 }

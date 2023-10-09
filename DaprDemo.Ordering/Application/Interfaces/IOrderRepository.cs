@@ -1,9 +1,10 @@
 using DaprDemo.Ordering.Application.Features.Order.AddOrder.Commands;
+using DaprDemo.Ordering.Domain;
 
 namespace DaprDemo.Ordering.Application.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<bool> SaveDbAsync(OrderCommand command);
+        Task<Order> SaveDbAsync(OrderCommand command);
     }
 }

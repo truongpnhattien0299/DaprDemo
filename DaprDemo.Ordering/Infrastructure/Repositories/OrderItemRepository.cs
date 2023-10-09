@@ -17,11 +17,26 @@ namespace DaprDemo.Ordering.Infrastructure.Repositories
             _orderItems = _context.OrderItems;
         }
 
-        public async Task<bool> SaveDbAsync(OrderItemCommand command)
+        // public async Task<List<OrderItemCommand>> SaveDbAsync(List<OrderItemCommand> command)
+        // {
+        //     foreach (var item in command)
+        //     {
+        //         OrderItem orderItem = new(0, item.ProductId, item.Quantity, item.OrderId);
+        //         await _orderItems.AddAsync(orderItem);
+        //     }
+        //     await _context.SaveChangesAsync();
+        //     return command;
+
+        // }
+        public async Task<List<OrderItem>> SaveDbAsync(List<OrderItem> command)
         {
-            OrderItem orderItem = new(0, command.ProductId, command.Quantity, command.OrderId);
-            await _orderItems.AddAsync(orderItem);
-            return (await _context.SaveChangesAsync()) > 0;
+            foreach (var item in command)
+            {
+                OrderItem orderItem = new(0, item.ProductId, item.Quantity, item.OrderId);
+                await _orderItems.AddAsync(orderItem);
+            }
+            await _context.SaveChangesAsync();
+            return command;
 
         }
     }

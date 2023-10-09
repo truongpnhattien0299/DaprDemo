@@ -13,7 +13,7 @@ namespace DaprDemo.Ordering.Controllers
         private readonly ILogger<OrderController> _logger;
         private readonly IMediator _mediator;
 
-        private const string DAPR_PUBSUB_NAME = "eshopondapr-pubsub-kafka";
+        private const string DAPR_PUBSUB_NAME = "kafka-pubsub";
 
         public OrderController(ILogger<OrderController> logger, IMediator mediator)
         {
@@ -27,9 +27,19 @@ namespace DaprDemo.Ordering.Controllers
         public async Task<IActionResult> AddCart(List<AddOrderCommand> carts)
         {
             _logger.LogWarning("carts {@carts}", carts);
-            var result = await _mediator.Send(carts.FirstOrDefault());
+            OrderCommand orderCommand = new();
+            orderCommand.UserId = carts?.FirstOrDefault()?.UserId;
+            List<OrderItem> orderItems = new();
+            foreach (var item in carts)
+            {
+                orderItems.Add(
+                    new OrderItem(0, item.ProductId, item.Quantity, 0)
+                );
+            }
+            orderCommand.OrderItems = orderItems;
+            var result = await _mediator.Send(orderCommand);
 
-            return Ok();
+            return Ok(result);
         }
     }
 }

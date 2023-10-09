@@ -10,7 +10,7 @@ namespace DaprDemo.ShoppingCart.Infrastruture.Repositories
         private readonly DaprClient _daprClient;
         private readonly ILogger<CartRepository> _logger;
         private const string StateStore = "statestore";
-        private const string Pubsub = "eshopondapr-pubsub-kafka";
+        private const string Pubsub = "kafka-pubsub";
 
         public CartRepository(
             DaprClient daprClient,
